@@ -1,0 +1,155 @@
+/* Custom Styles & Animation for HabitFlow */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Glassmorphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+.glass-card-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-card-hover:hover {
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom checkbox */
+.habit-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 2px solid #cbd5e1;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dark .habit-checkbox {
+  border-color: #475569;
+  background-color: #1e293b;
+}
+
+.habit-checkbox:hover {
+  border-color: #6366f1;
+  transform: scale(1.1);
+}
+
+.habit-checkbox:checked {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-color: transparent;
+  transform: scale(1.05);
+}
+
+.habit-checkbox:checked::after {
+  content: '';
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+  display: block;
+}
+
+/* Heatmap Grid Cell */
+.heatmap-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  cursor: pointer;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.35);
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+.level-0 { background-color: #f1f5f9; }
+.level-1 { background-color: #c7d2fe; }
+.level-2 { background-color: #818cf8; }
+.level-3 { background-color: #6366f1; }
+.level-4 { background-color: #4338ca; }
+
+.dark .level-0 { background-color: #334155; }
+.dark .level-1 { background-color: #3730a3; }
+.dark .level-2 { background-color: #4f46e5; }
+.dark .level-3 { background-color: #6366f1; }
+.dark .level-4 { background-color: #a5b4fc; }
+
+/* Progress Ring Animation */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.8));
+  }
+}
+
+.fire-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes checkBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.checked-animate {
+  animation: checkBounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Category Badges */
+.badge-health { background-color: #ecfdf5; color: #059669; border-color: #a7f3d0; }
+.badge-productivity { background-color: #eff6ff; color: #2563eb; border-color: #bfdbfe; }
+.badge-mindfulness { background-color: #fdf4ff; color: #c026d3; border-color: #f5d0fe; }
+.badge-fitness { background-color: #fff7ed; color: #ea580c; border-color: #fed7aa; }
+.badge-learning { background-color: #fefce8; color: #ca8a04; border-color: #fef08a; }
+.badge-routine { background-color: #f5f3ff; color: #7c3aed; border-color: #ddd6fe; }
+
+.dark .badge-health { background-color: rgba(6, 78, 59, 0.35); color: #34d399; border-color: rgba(5, 150, 105, 0.4); }
+.dark .badge-productivity { background-color: rgba(30, 58, 138, 0.35); color: #60a5fa; border-color: rgba(37, 99, 235, 0.4); }
+.dark .badge-mindfulness { background-color: rgba(112, 26, 117, 0.35); color: #e879f9; border-color: rgba(192, 38, 211, 0.4); }
+.dark .badge-fitness { background-color: rgba(124, 45, 18, 0.35); color: #fb923c; border-color: rgba(234, 88, 12, 0.4); }
+.dark .badge-learning { background-color: rgba(113, 63, 18, 0.35); color: #facc15; border-color: rgba(202, 138, 4, 0.4); }
+.dark .badge-routine { background-color: rgba(76, 29, 149, 0.35); color: #a78bfa; border-color: rgba(124, 58, 237, 0.4); }
